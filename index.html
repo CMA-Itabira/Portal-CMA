@@ -10,253 +10,269 @@
   <script src="https://unpkg.com/feather-icons"></script>
 </head>
 
-<body class="bg-white font-sans w-full max-w-8xl mx-auto flex flex-col min-h-screen overflow-hidden">
+<body class="bg-white font-sans w-full max-w-8xl mx-auto flex flex-col min-h-screen lg:h-screen lg:overflow-hidden">
 
   <!-- Header -->
-  <header class="w-full bg-white border-b shadow-md border-gray-200">
-    <div class="max-w-[1500px] mx-auto flex items-center justify-between h-14 px-4 md:px-8">
+  <header id="pageHeader" class="w-full bg-white border-b shadow-md border-gray-200 sticky top-0 z-20 flex-shrink-0">
+    <div class="max-w-[1500px] mx-auto flex items-center justify-between h-14 px-4 sm:px-6 lg:px-8">
       <img src="img/LogoVale-Portal.png" alt="Logo Vale" class="h-10 w-auto">
       <div class="flex items-center gap-4">
-        <!-- Campo de busca -->
+        <!-- Campo de busca para telas > 768px -->
         <form class="hidden md:block" onsubmit="return false;">
           <div class="relative">
             <input type="text" id="searchInput" placeholder="Buscar..."
-              class="pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#EDB111] focus:outline-none bg-gray-50 text-gray-700" />
+              class="searchInputControl pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#EDB111] focus:outline-none bg-gray-50 text-gray-700" />
             <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
               <i data-feather="search" class="w-5 h-5"></i>
             </span>
           </div>
         </form>
         <!-- Ícone de perfil -->
-        <span class="inline-flex items-center justify-center h-10 w-10 rounded-full bg-gray-200">
+        <span id="profileIcon"
+          class="inline-flex items-center justify-center h-10 w-10 rounded-full bg-gray-200 cursor-pointer flex-shrink-0">
           <i data-feather="user" class="w-6 h-6 text-gray-600"></i>
         </span>
       </div>
     </div>
+    <!-- Campo de busca para telas < 768px -->
+    <div id="mobileSearch" class="max-w-[1500px] mx-auto px-4 pb-3 md:hidden">
+      <form onsubmit="return false;">
+        <div class="relative">
+          <input type="text" id="searchInputMobile" placeholder="Buscar..."
+            class="searchInputControl w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#EDB111] focus:outline-none bg-gray-50 text-gray-700" />
+          <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+            <i data-feather="search" class="w-5 h-5"></i>
+          </span>
+        </div>
+      </form>
+    </div>
   </header>
 
   <!-- Main Section -->
-  <main class="h-[calc(100vh-56px)] flex items-start justify-center py-8 overflow-y-auto md:overflow-hidden">
-    <div class="flex flex-col md:flex-row gap-6 w-full max-w-[1500px] justify-between py-4 px-4 md:px-8 h-full">
-      <!-- Coluna 1 - Apenas CMA (vermelho) -->
-      <div class="flex flex-col w-full md:w-1/4">
-        <div class="flex flex-col items-center mb-2">
-          <div class="relative mb-2">
-            <span class="absolute -left-4 top-6 w-4 h-4 rounded-full bg-[#952B2D]"></span>
-            <span class="w-20 h-20 rounded-full bg-[#952B2D] border-8 border-white shadow-lg block"></span>
-          </div>
-          <span class="mt-2 text-[#952B2D] font-semibold text-base text-center">Administrativo</span>
-        </div>
-        <div class="flex flex-col gap-3 pr-1 md:overflow-y-auto md:max-h-[calc(100vh-56px-32px-40px)] sistemas-coluna">
-          <a href="#" target="_blank" rel="noopener noreferrer"
-            class="flex items-center gap-2 bg-[#952B2D] text-white rounded px-5 py-3 min-h-[56px] shadow hover:brightness-90 transition">
-            <i data-feather="droplet" class="w-5 h-5"></i>
-            <span class="text-sm">Acompanhamento de Lubrificação</span>
-          </a>
-          <a href="#" target="_blank" rel="noopener noreferrer"
-            class="flex items-center gap-2 bg-[#952B2D] text-white rounded px-5 py-3 min-h-[56px] shadow hover:brightness-90 transition">
-            <i data-feather="bell" class="w-5 h-5"></i>
-            <span class="text-sm">Alarmes SenseUP CMA</span>
-          </a>
-          <a href="#" target="_blank" rel="noopener noreferrer"
-            class="flex items-center gap-2 bg-[#952B2D] text-white rounded px-5 py-3 min-h-[56px] shadow hover:brightness-90 transition">
-            <i data-feather="file-text" class="w-5 h-5"></i>
-            <span class="text-sm">Analise de Notas</span>
-          </a>
-          <a href="#" target="_blank" rel="noopener noreferrer"
-            class="flex items-center gap-2 bg-[#952B2D] text-white rounded px-5 py-3 min-h-[56px] shadow hover:brightness-90 transition">
-            <i data-feather="tool" class="w-5 h-5"></i>
-            <span class="text-sm">Calibração de Instrumentos</span>
-          </a>
-          <a href="#" target="_blank" rel="noopener noreferrer"
-            class="flex items-center gap-2 bg-[#952B2D] text-white rounded px-5 py-3 min-h-[56px] shadow hover:brightness-90 transition">
-            <i data-feather="check-square" class="w-5 h-5"></i>
-            <span class="text-sm">Controle de Ações - Processo 13</span>
-          </a>
-          <a href="#" target="_blank" rel="noopener noreferrer"
-            class="flex items-center gap-2 bg-[#952B2D] text-white rounded px-5 py-3 min-h-[56px] shadow hover:brightness-90 transition">
-            <i data-feather="archive" class="w-5 h-5"></i>
-            <span class="text-sm">Estoque de Componentes</span>
-          </a>
-          <a href="#" target="_blank" rel="noopener noreferrer"
-            class="flex items-center gap-2 bg-[#952B2D] text-white rounded px-5 py-3 min-h-[56px] shadow hover:brightness-90 transition">
-            <i data-feather="briefcase" class="w-5 h-5"></i>
-            <span class="text-sm">Gestão da Carteira de Laudos - Processo 12</span>
-          </a>
-          <a href="#" target="_blank" rel="noopener noreferrer"
-            class="flex items-center gap-2 bg-[#952B2D] text-white rounded px-5 py-3 min-h-[56px] shadow hover:brightness-90 transition">
-            <i data-feather="repeat" class="w-5 h-5"></i>
-            <span class="text-sm">Gestão da Rotina - Processo 13</span>
-          </a>
-          <a href="#" target="_blank" rel="noopener noreferrer"
-            class="flex items-center gap-2 bg-[#952B2D] text-white rounded px-5 py-3 min-h-[56px] shadow hover:brightness-90 transition">
-            <i data-feather="map-pin" class="w-5 h-5"></i>
-            <span class="text-sm">Gestão de Spots Dynamox - Processo 13</span>
-          </a>
-          <a href="#" target="_blank" rel="noopener noreferrer"
-            class="flex items-center gap-2 bg-[#952B2D] text-white rounded px-5 py-3 min-h-[56px] shadow hover:brightness-90 transition">
-            <i data-feather="bar-chart-2" class="w-5 h-5"></i>
-            <span class="text-sm">Indicadores de Processo</span>
-          </a>
-          <a href="#" target="_blank" rel="noopener noreferrer"
-            class="flex items-center gap-2 bg-[#952B2D] text-white rounded px-5 py-3 min-h-[56px] shadow hover:brightness-90 transition">
-            <i data-feather="activity" class="w-5 h-5"></i>
-            <span class="text-sm">Organograma Preditiva - Processo 11</span>
-          </a>
-          <a href="#" target="_blank" rel="noopener noreferrer"
-            class="flex items-center gap-2 bg-[#952B2D] text-white rounded px-5 py-3 min-h-[56px] shadow hover:brightness-90 transition">
-            <i data-feather="shield" class="w-5 h-5"></i>
-            <span class="text-sm">Pedra Preditiva</span>
-          </a>
-        </div>
-      </div>
+  <main class="flex-1 lg:overflow-y-hidden">
+    <div class="w-full max-w-[1500px] mx-auto p-4 sm:p-6 lg:p-8 h-full">
+      <!-- Container das colunas com layout responsivo -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:flex lg:flex-row gap-8 h-full">
 
-      <!-- Coluna 2 - Gestão (amarelo) -->
-      <div class="flex flex-col w-full md:w-1/4">
-        <div class="flex flex-col items-center mb-2">
-          <div class="relative mb-2">
-            <span class="absolute -left-4 top-6 w-4 h-4 rounded-full bg-[#E3B023]"></span>
-            <span class="w-20 h-20 rounded-full bg-[#E3B023] border-8 border-white shadow-lg block"></span>
+        <!-- Coluna 1 - Administrativo (vermelho) -->
+        <div id="adminColuna" class="flex-col lg:flex-1 hidden">
+          <div class="flex flex-col items-center mb-2 flex-shrink-0">
+            <div class="relative mb-2">
+              <span class="absolute -left-4 top-6 w-4 h-4 rounded-full bg-[#952B2D]"></span>
+              <span class="w-20 h-20 rounded-full bg-[#952B2D] border-8 border-white shadow-lg block"></span>
+            </div>
+            <span class="mt-2 text-[#952B2D] font-semibold text-base text-center">Administrativo</span>
           </div>
-          <span class="mt-2 text-[#E3B023] font-semibold text-base text-center">Gestão</span>
+          <div class="flex flex-col gap-3 pr-1 lg:overflow-y-auto sistemas-coluna">
+            <a href="#" target="_blank" rel="noopener noreferrer"
+              class="flex items-center gap-2 bg-[#952B2D] text-white rounded px-5 py-2.5 min-h-[48px] shadow hover:brightness-90 transition"><i
+                data-feather="droplet" class="w-5 h-5"></i><span class="text-sm">Acompanhamento de
+                Lubrificação</span></a>
+            <a href="#" target="_blank" rel="noopener noreferrer"
+              class="flex items-center gap-2 bg-[#952B2D] text-white rounded px-5 py-2.5 min-h-[48px] shadow hover:brightness-90 transition"><i
+                data-feather="bell" class="w-5 h-5"></i><span class="text-sm">Alarmes SenseUP CMA</span></a>
+            <a href="#" target="_blank" rel="noopener noreferrer"
+              class="flex items-center gap-2 bg-[#952B2D] text-white rounded px-5 py-2.5 min-h-[48px] shadow hover:brightness-90 transition"><i
+                data-feather="file-text" class="w-5 h-5"></i><span class="text-sm">Analise de Notas</span></a>
+            <a href="#" target="_blank" rel="noopener noreferrer"
+              class="flex items-center gap-2 bg-[#952B2D] text-white rounded px-5 py-2.5 min-h-[48px] shadow hover:brightness-90 transition"><i
+                data-feather="tool" class="w-5 h-5"></i><span class="text-sm">Calibração de Instrumentos</span></a>
+            <a href="#" target="_blank" rel="noopener noreferrer"
+              class="flex items-center gap-2 bg-[#952B2D] text-white rounded px-5 py-2.5 min-h-[48px] shadow hover:brightness-90 transition"><i
+                data-feather="check-square" class="w-5 h-5"></i><span class="text-sm">Controle de Ações - Processo
+                13</span></a>
+            <a href="#" target="_blank" rel="noopener noreferrer"
+              class="flex items-center gap-2 bg-[#952B2D] text-white rounded px-5 py-2.5 min-h-[48px] shadow hover:brightness-90 transition"><i
+                data-feather="archive" class="w-5 h-5"></i><span class="text-sm">Estoque de Componentes</span></a>
+            <a href="#" target="_blank" rel="noopener noreferrer"
+              class="flex items-center gap-2 bg-[#952B2D] text-white rounded px-5 py-2.5 min-h-[48px] shadow hover:brightness-90 transition"><i
+                data-feather="briefcase" class="w-5 h-5"></i><span class="text-sm">Gestão da Carteira de Laudos -
+                Processo 12</span></a>
+            <a href="#" target="_blank" rel="noopener noreferrer"
+              class="flex items-center gap-2 bg-[#952B2D] text-white rounded px-5 py-2.5 min-h-[48px] shadow hover:brightness-90 transition"><i
+                data-feather="repeat" class="w-5 h-5"></i><span class="text-sm">Gestão da Rotina - Processo
+                13</span></a>
+            <a href="#" target="_blank" rel="noopener noreferrer"
+              class="flex items-center gap-2 bg-[#952B2D] text-white rounded px-5 py-2.5 min-h-[48px] shadow hover:brightness-90 transition"><i
+                data-feather="map-pin" class="w-5 h-5"></i><span class="text-sm">Gestão de Spots Dynamox - Processo
+                13</span></a>
+            <a href="#" target="_blank" rel="noopener noreferrer"
+              class="flex items-center gap-2 bg-[#952B2D] text-white rounded px-5 py-2.5 min-h-[48px] shadow hover:brightness-90 transition"><i
+                data-feather="bar-chart-2" class="w-5 h-5"></i><span class="text-sm">Indicadores de Processo</span></a>
+            <a href="#" target="_blank" rel="noopener noreferrer"
+              class="flex items-center gap-2 bg-[#952B2D] text-white rounded px-5 py-2.5 min-h-[48px] shadow hover:brightness-90 transition"><i
+                data-feather="activity" class="w-5 h-5"></i><span class="text-sm">Organograma Preditiva - Processo
+                11</span></a>
+            <a href="#" target="_blank" rel="noopener noreferrer"
+              class="flex items-center gap-2 bg-[#952B2D] text-white rounded px-5 py-2.5 min-h-[48px] shadow hover:brightness-90 transition"><i
+                data-feather="shield" class="w-5 h-5"></i><span class="text-sm">Pedra Preditiva</span></a>
+          </div>
         </div>
-        <div class="flex flex-col gap-3 pr-1 md:overflow-y-auto md:max-h-[calc(100vh-56px-32px-40px)] sistemas-coluna">
-          <a href="#" target="_blank" rel="noopener noreferrer"
-            class="flex items-center gap-2 bg-[#E3B023] text-white rounded px-5 py-3 min-h-[56px] shadow hover:brightness-90 transition">
-            <i data-feather="file-text" class="w-5 h-5"></i>
-            <span class="text-sm">Gestão de Notas Sensitivas</span>
-          </a>
-          <a href="#" target="_blank" rel="noopener noreferrer"
-            class="flex items-center gap-2 bg-[#E3B023] text-white rounded px-5 py-3 min-h-[56px] shadow hover:brightness-90 transition">
-            <i data-feather="file-text" class="w-5 h-5"></i>
-            <span class="text-sm">Laudos</span>
-          </a>
-          <a href="#" target="_blank" rel="noopener noreferrer"
-            class="flex items-center gap-2 bg-[#E3B023] text-white rounded px-5 py-3 min-h-[56px] shadow hover:brightness-90 transition">
-            <i data-feather="archive" class="w-5 h-5"></i>
-            <span class="text-sm">Laudos Vibracionais</span>
-          </a>
-          <a href="#" target="_blank" rel="noopener noreferrer"
-            class="flex items-center gap-2 bg-[#E3B023] text-white rounded px-5 py-3 min-h-[56px] shadow hover:brightness-90 transition">
-            <i data-feather="thermometer" class="w-5 h-5"></i>
-            <span class="text-sm">Laudos Termografia</span>
-          </a>
-          <a href="#" target="_blank" rel="noopener noreferrer"
-            class="flex items-center gap-2 bg-[#E3B023] text-white rounded px-5 py-3 min-h-[56px] shadow hover:brightness-90 transition">
-            <i data-feather="settings" class="w-5 h-5"></i>
-            <span class="text-sm">Motores Elétricos</span>
-          </a>
-          <a href="#" target="_blank" rel="noopener noreferrer"
-            class="flex items-center gap-2 bg-[#E3B023] text-white rounded px-5 py-3 min-h-[56px] shadow hover:brightness-90 transition">
-            <i data-feather="file-text" class="w-5 h-5"></i>
-            <span class="text-sm">OMs Emergenciais</span>
-          </a>
-          <a href="#" target="_blank" rel="noopener noreferrer"
-            class="flex items-center gap-2 bg-[#E3B023] text-white rounded px-5 py-3 min-h-[56px] shadow hover:brightness-90 transition">
-            <i data-feather="heart" class="w-5 h-5"></i>
-            <span class="text-sm">Saúde de Ativo</span>
-          </a>
-        </div>
-      </div>
 
-      <!-- Coluna 3 - Monitoramento (azul) -->
-      <div class="flex flex-col w-full md:w-1/4">
-        <div class="flex flex-col items-center mb-2">
-          <div class="relative mb-2">
-            <span class="absolute -left-4 top-6 w-4 h-4 rounded-full bg-[#234979]"></span>
-            <span class="w-20 h-20 rounded-full bg-[#234979] border-8 border-white shadow-lg block"></span>
+        <!-- Coluna 2 - Gestão (amarelo) -->
+        <div class="flex flex-col lg:flex-1">
+          <div class="flex flex-col items-center mb-2 flex-shrink-0">
+            <div class="relative mb-2">
+              <span class="absolute -left-4 top-6 w-4 h-4 rounded-full bg-[#E3B023]"></span>
+              <span class="w-20 h-20 rounded-full bg-[#E3B023] border-8 border-white shadow-lg block"></span>
+            </div>
+            <span class="mt-2 text-[#E3B023] font-semibold text-base text-center">Gestão</span>
           </div>
-          <span class="mt-2 text-[#234979] font-semibold text-base text-center">Monitoramento</span>
+          <div class="flex flex-col gap-3 pr-1 lg:overflow-y-auto sistemas-coluna">
+            <a href="#" target="_blank" rel="noopener noreferrer"
+              class="flex items-center gap-2 bg-[#E3B023] text-white rounded px-5 py-2.5 min-h-[48px] shadow hover:brightness-90 transition"><i
+                data-feather="file-text" class="w-5 h-5"></i><span class="text-sm">Gestão de Notas Sensitivas</span></a>
+            <a href="#" target="_blank" rel="noopener noreferrer"
+              class="flex items-center gap-2 bg-[#E3B023] text-white rounded px-5 py-2.5 min-h-[48px] shadow hover:brightness-90 transition"><i
+                data-feather="file-text" class="w-5 h-5"></i><span class="text-sm">Laudos</span></a>
+            <a href="#" target="_blank" rel="noopener noreferrer"
+              class="flex items-center gap-2 bg-[#E3B023] text-white rounded px-5 py-2.5 min-h-[48px] shadow hover:brightness-90 transition"><i
+                data-feather="archive" class="w-5 h-5"></i><span class="text-sm">Laudos Vibracionais</span></a>
+            <a href="#" target="_blank" rel="noopener noreferrer"
+              class="flex items-center gap-2 bg-[#E3B023] text-white rounded px-5 py-2.5 min-h-[48px] shadow hover:brightness-90 transition"><i
+                data-feather="thermometer" class="w-5 h-5"></i><span class="text-sm">Laudos Termografia</span></a>
+            <a href="#" target="_blank" rel="noopener noreferrer"
+              class="flex items-center gap-2 bg-[#E3B023] text-white rounded px-5 py-2.5 min-h-[48px] shadow hover:brightness-90 transition"><i
+                data-feather="settings" class="w-5 h-5"></i><span class="text-sm">Motores Elétricos</span></a>
+            <a href="#" target="_blank" rel="noopener noreferrer"
+              class="flex items-center gap-2 bg-[#E3B023] text-white rounded px-5 py-2.5 min-h-[48px] shadow hover:brightness-90 transition"><i
+                data-feather="file-text" class="w-5 h-5"></i><span class="text-sm">OMs Emergenciais</span></a>
+            <a href="#" target="_blank" rel="noopener noreferrer"
+              class="flex items-center gap-2 bg-[#E3B023] text-white rounded px-5 py-2.5 min-h-[48px] shadow hover:brightness-90 transition"><i
+                data-feather="heart" class="w-5 h-5"></i><span class="text-sm">Saúde de Ativo</span></a>
+          </div>
         </div>
-        <div class="flex flex-col gap-3 pr-1 md:overflow-y-auto md:max-h-[calc(100vh-56px-32px-40px)] sistemas-coluna">
-          <a href="#" target="_blank" rel="noopener noreferrer"
-            class="flex items-center gap-2 bg-[#234979] text-white rounded px-5 py-3 min-h-[56px] shadow hover:brightness-90 transition">
-            <i data-feather="bar-chart" class="w-5 h-5"></i>
-            <span class="text-sm">Análise de Óleo</span>
-          </a>
-          <a href="#" target="_blank" rel="noopener noreferrer"
-            class="flex items-center gap-2 bg-[#234979] text-white rounded px-5 py-3 min-h-[56px] shadow hover:brightness-90 transition">
-            <i data-feather="settings" class="w-5 h-5"></i>
-            <span class="text-sm">Desgaste de correias</span>
-          </a>
-          <a href="#" target="_blank" rel="noopener noreferrer"
-            class="flex items-center gap-2 bg-[#234979] text-white rounded px-5 py-3 min-h-[56px] shadow hover:brightness-90 transition">
-            <i data-feather="search" class="w-5 h-5"></i>
-            <span class="text-sm">Inspeçãos Sensitivas</span>
-          </a>
-          <a href="#" target="_blank" rel="noopener noreferrer"
-            class="flex items-center gap-2 bg-[#234979] text-white rounded px-5 py-3 min-h-[56px] shadow hover:brightness-90 transition">
-            <i data-feather="search" class="w-5 h-5"></i>
-            <span class="text-sm">Inspeções Operadores</span>
-          </a>
-          <a href="#" target="_blank" rel="noopener noreferrer"
-            class="flex items-center gap-2 bg-[#234979] text-white rounded px-5 py-3 min-h-[56px] shadow hover:brightness-90 transition">
-            <i data-feather="refresh-cw" class="w-5 h-5"></i>
-            <span class="text-sm">Inversões de Standby</span>
-          </a>
-          <a href="#" target="_blank" rel="noopener noreferrer"
-            class="flex items-center gap-2 bg-[#234979] text-white rounded px-5 py-3 min-h-[56px] shadow hover:brightness-90 transition">
-            <i data-feather="repeat" class="w-5 h-5"></i>
-            <span class="text-sm">Gestão Troca Oleo Peneiras</span>
-          </a>
-          <a href="#" target="_blank" rel="noopener noreferrer"
-            class="flex items-center gap-2 bg-[#234979] text-white rounded px-5 py-3 min-h-[56px] shadow hover:brightness-90 transition">
-            <i data-feather="x-square" class="w-5 h-5"></i>
-            <span class="text-sm">Gestão_Pontos_Sem_Monitoramento</span>
-          </a>
-        </div>
-      </div>
 
-      <!-- Coluna 4 - Controle (teal/verde) -->
-      <div class="flex flex-col w-full md:w-1/4">
-        <div class="flex flex-col items-center mb-2">
-          <div class="relative mb-2">
-            <span class="absolute -left-4 top-6 w-4 h-4 rounded-full bg-[#009997]"></span>
-            <span class="w-20 h-20 rounded-full bg-[#009997] border-8 border-white shadow-lg block"></span>
+        <!-- Coluna 3 - Monitoramento (azul) -->
+        <div class="flex flex-col lg:flex-1">
+          <div class="flex flex-col items-center mb-2 flex-shrink-0">
+            <div class="relative mb-2">
+              <span class="absolute -left-4 top-6 w-4 h-4 rounded-full bg-[#234979]"></span>
+              <span class="w-20 h-20 rounded-full bg-[#234979] border-8 border-white shadow-lg block"></span>
+            </div>
+            <span class="mt-2 text-[#234979] font-semibold text-base text-center">Monitoramento</span>
           </div>
-          <span class="mt-2 text-[#009997] font-semibold text-base text-center">Controle</span>
+          <div class="flex flex-col gap-3 pr-1 lg:overflow-y-auto sistemas-coluna">
+            <a href="#" target="_blank" rel="noopener noreferrer"
+              class="flex items-center gap-2 bg-[#234979] text-white rounded px-5 py-2.5 min-h-[48px] shadow hover:brightness-90 transition"><i
+                data-feather="bar-chart" class="w-5 h-5"></i><span class="text-sm">Análise de Óleo</span></a>
+            <a href="#" target="_blank" rel="noopener noreferrer"
+              class="flex items-center gap-2 bg-[#234979] text-white rounded px-5 py-2.5 min-h-[48px] shadow hover:brightness-90 transition"><i
+                data-feather="settings" class="w-5 h-5"></i><span class="text-sm">Desgaste de correias</span></a>
+            <a href="#" target="_blank" rel="noopener noreferrer"
+              class="flex items-center gap-2 bg-[#234979] text-white rounded px-5 py-2.5 min-h-[48px] shadow hover:brightness-90 transition"><i
+                data-feather="search" class="w-5 h-5"></i><span class="text-sm">Inspeçãos Sensitivas</span></a>
+            <a href="#" target="_blank" rel="noopener noreferrer"
+              class="flex items-center gap-2 bg-[#234979] text-white rounded px-5 py-2.5 min-h-[48px] shadow hover:brightness-90 transition"><i
+                data-feather="search" class="w-5 h-5"></i><span class="text-sm">Inspeções Operadores</span></a>
+            <a href="#" target="_blank" rel="noopener noreferrer"
+              class="flex items-center gap-2 bg-[#234979] text-white rounded px-5 py-2.5 min-h-[48px] shadow hover:brightness-90 transition"><i
+                data-feather="refresh-cw" class="w-5 h-5"></i><span class="text-sm">Inversões de Standby</span></a>
+            <a href="#" target="_blank" rel="noopener noreferrer"
+              class="flex items-center gap-2 bg-[#234979] text-white rounded px-5 py-2.5 min-h-[48px] shadow hover:brightness-90 transition"><i
+                data-feather="repeat" class="w-5 h-5"></i><span class="text-sm">Gestão Troca Oleo Peneiras</span></a>
+            <a href="#" target="_blank" rel="noopener noreferrer"
+              class="flex items-center gap-2 bg-[#234979] text-white rounded px-5 py-2.5 min-h-[48px] shadow hover:brightness-90 transition"><i
+                data-feather="x-square" class="w-5 h-5"></i><span
+                class="text-sm">Gestão_Pontos_Sem_Monitoramento</span></a>
+          </div>
         </div>
-        <div class="flex flex-col gap-3 pr-1 md:overflow-y-auto md:max-h-[calc(100vh-56px-32px-40px)] sistemas-coluna">
-          <a href="#" target="_blank" rel="noopener noreferrer"
-            class="flex items-center gap-2 bg-[#009997] text-white rounded px-5 py-3 min-h-[56px] shadow hover:brightness-90 transition">
-            <i data-feather="activity" class="w-5 h-5"></i>
-            <span class="text-sm">Ativos em UTI</span>
-          </a>
-          <a href="#" target="_blank" rel="noopener noreferrer"
-            class="flex items-center gap-2 bg-[#009997] text-white rounded px-5 py-3 min-h-[56px] shadow hover:brightness-90 transition">
-            <i data-feather="bell" class="w-5 h-5"></i>
-            <span class="text-sm">Alarmes</span>
-          </a>
-          <a href="#" target="_blank" rel="noopener noreferrer"
-            class="flex items-center gap-2 bg-[#009997] text-white rounded px-5 py-3 min-h-[56px] shadow hover:brightness-90 transition">
-            <i data-feather="briefcase" class="w-5 h-5"></i>
-            <span class="text-sm">Gestão de laudos</span>
-          </a>
-          <a href="#" target="_blank" rel="noopener noreferrer"
-            class="flex items-center gap-2 bg-[#009997] text-white rounded px-5 py-3 min-h-[56px] shadow hover:brightness-90 transition">
-            <i data-feather="file-text" class="w-5 h-5"></i>
-            <span class="text-sm">Gestão de Notas Sensitivas</span>
-          </a>
-          <a href="#" target="_blank" rel="noopener noreferrer"
-            class="flex items-center gap-2 bg-[#009997] text-white rounded px-5 py-3 min-h-[56px] shadow hover:brightness-90 transition">
-            <i data-feather="heart" class="w-5 h-5"></i>
-            <span class="text-sm">Saúde de Ativo</span>
-          </a>
+
+        <!-- Coluna 4 - Controle (teal/verde) -->
+        <div class="flex flex-col lg:flex-1">
+          <div class="flex flex-col items-center mb-2 flex-shrink-0">
+            <div class="relative mb-2">
+              <span class="absolute -left-4 top-6 w-4 h-4 rounded-full bg-[#009997]"></span>
+              <span class="w-20 h-20 rounded-full bg-[#009997] border-8 border-white shadow-lg block"></span>
+            </div>
+            <span class="mt-2 text-[#009997] font-semibold text-base text-center">Controle</span>
+          </div>
+          <div class="flex flex-col gap-3 pr-1 lg:overflow-y-auto sistemas-coluna">
+            <a href="#" target="_blank" rel="noopener noreferrer"
+              class="flex items-center gap-2 bg-[#009997] text-white rounded px-5 py-2.5 min-h-[48px] shadow hover:brightness-90 transition"><i
+                data-feather="activity" class="w-5 h-5"></i><span class="text-sm">Ativos em UTI</span></a>
+            <a href="#" target="_blank" rel="noopener noreferrer"
+              class="flex items-center gap-2 bg-[#009997] text-white rounded px-5 py-2.5 min-h-[48px] shadow hover:brightness-90 transition"><i
+                data-feather="bell" class="w-5 h-5"></i><span class="text-sm">Alarmes</span></a>
+            <a href="#" target="_blank" rel="noopener noreferrer"
+              class="flex items-center gap-2 bg-[#009997] text-white rounded px-5 py-2.5 min-h-[48px] shadow hover:brightness-90 transition"><i
+                data-feather="briefcase" class="w-5 h-5"></i><span class="text-sm">Gestão de laudos</span></a>
+            <a href="#" target="_blank" rel="noopener noreferrer"
+              class="flex items-center gap-2 bg-[#009997] text-white rounded px-5 py-2.5 min-h-[48px] shadow hover:brightness-90 transition"><i
+                data-feather="file-text" class="w-5 h-5"></i><span class="text-sm">Gestão de Notas Sensitivas</span></a>
+            <a href="#" target="_blank" rel="noopener noreferrer"
+              class="flex items-center gap-2 bg-[#009997] text-white rounded px-5 py-2.5 min-h-[48px] shadow hover:brightness-90 transition"><i
+                data-feather="heart" class="w-5 h-5"></i><span class="text-sm">Saúde de Ativo</span></a>
+          </div>
         </div>
       </div>
     </div>
   </main>
+
   <script>
     feather.replace();
-    // Busca dinâmica
-    document.getElementById('searchInput').addEventListener('input', function () {
-      const busca = this.value.toLowerCase();
+
+    // --- LÓGICA DE BUSCA ---
+    function handleSearch(event) {
+      const busca = event.target.value.toLowerCase();
+      // Sincroniza o valor entre os dois campos de busca
+      document.getElementById('searchInput').value = busca;
+      document.getElementById('searchInputMobile').value = busca;
+
       document.querySelectorAll('.sistemas-coluna').forEach(coluna => {
         coluna.querySelectorAll('a').forEach(card => {
           const texto = card.textContent.toLowerCase();
-          card.style.display = texto.includes(busca) ? '' : 'none';
+          card.style.display = texto.includes(busca) ? 'flex' : 'none';
         });
       });
+    }
+
+    document.querySelectorAll('.searchInputControl').forEach(input => {
+      input.addEventListener('input', handleSearch);
+    });
+
+    // --- LÓGICA DE AUTENTICAÇÃO ---
+    const codigoCorreto = "CMA2025";
+    const adminColuna = document.getElementById('adminColuna');
+    const profileIcon = document.getElementById('profileIcon');
+    let isAdminLoggedIn = false;
+
+    const login = () => {
+      adminColuna.classList.remove('hidden');
+      adminColuna.classList.add('flex'); // Garante que a coluna seja exibida como flex
+      profileIcon.innerHTML = `<img src="img/favicon1.png" alt="Favicon" class="h-8 w-8 rounded-full">`;
+      localStorage.setItem('isAdminLoggedIn', 'true');
+      isAdminLoggedIn = true;
+    };
+
+    const logout = () => {
+      adminColuna.classList.add('hidden');
+      adminColuna.classList.remove('flex'); // Remove o display flex ao deslogar
+      profileIcon.innerHTML = `<i data-feather="user" class="w-6 h-6 text-gray-600"></i>`;
+      feather.replace();
+      localStorage.removeItem('isAdminLoggedIn');
+      isAdminLoggedIn = false;
+    };
+
+    profileIcon.addEventListener('click', () => {
+      if (isAdminLoggedIn) {
+        if (confirm("Deseja sair do perfil administrativo?")) {
+          logout();
+        }
+      } else {
+        const codigo = prompt("Informe o código para acessar a área administrativa:");
+        if (codigo === codigoCorreto) {
+          login();
+        } else if (codigo !== null && codigo !== "") {
+          alert("Código incorreto!");
+        }
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      if (localStorage.getItem('isAdminLoggedIn') === 'true') {
+        login();
+      }
     });
   </script>
 </body>
