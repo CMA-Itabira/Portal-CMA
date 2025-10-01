@@ -5,7 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portal CMA</title>
-  <link rel="icon" type="image/x-icon" href="img/favicon1.png" />
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/x-icon" href="src/img/favicon1.png" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/feather-icons"></script>
 </head>
@@ -15,7 +16,7 @@
   <!-- Header -->
   <header id="pageHeader" class="w-full bg-white border-b shadow-md border-gray-200 sticky top-0 z-20 flex-shrink-0">
     <div class="max-w-[1500px] mx-auto flex items-center justify-between h-14 px-4 sm:px-6 lg:px-8">
-      <img src="img/LogoVale-Portal.png" alt="Logo Vale" class="h-10 w-auto">
+      <img src="src/img/LogoVale-Portal.png" alt="Logo Vale" class="h-10 w-auto">
       <div class="flex items-center gap-4">
         <!-- Campo de busca para telas > 768px -->
         <form class="hidden md:block" onsubmit="return false;">
@@ -217,70 +218,14 @@
     </div>
   </main>
 
+  <script src="src/js/search.js"></script>
+  <script src="src/js/auth.js"></script>
   <script>
-    feather.replace();
-
-    // --- LÓGICA DE BUSCA ---
-    function handleSearch(event) {
-      const busca = event.target.value.toLowerCase();
-      // Sincroniza o valor entre os dois campos de busca
-      document.getElementById('searchInput').value = busca;
-      document.getElementById('searchInputMobile').value = busca;
-
-      document.querySelectorAll('.sistemas-coluna').forEach(coluna => {
-        coluna.querySelectorAll('a').forEach(card => {
-          const texto = card.textContent.toLowerCase();
-          card.style.display = texto.includes(busca) ? 'flex' : 'none';
-        });
-      });
-    }
-
-    document.querySelectorAll('.searchInputControl').forEach(input => {
-      input.addEventListener('input', handleSearch);
-    });
-
-    // --- LÓGICA DE AUTENTICAÇÃO ---
-    const codigoCorreto = "CMA2025";
-    const adminColuna = document.getElementById('adminColuna');
-    const profileIcon = document.getElementById('profileIcon');
-    let isAdminLoggedIn = false;
-
-    const login = () => {
-      adminColuna.classList.remove('hidden');
-      adminColuna.classList.add('flex'); // Garante que a coluna seja exibida como flex
-      profileIcon.innerHTML = `<img src="img/favicon1.png" alt="Favicon" class="h-8 w-8 rounded-full">`;
-      localStorage.setItem('isAdminLoggedIn', 'true');
-      isAdminLoggedIn = true;
-    };
-
-    const logout = () => {
-      adminColuna.classList.add('hidden');
-      adminColuna.classList.remove('flex'); // Remove o display flex ao deslogar
-      profileIcon.innerHTML = `<i data-feather="user" class="w-6 h-6 text-gray-600"></i>`;
-      feather.replace();
-      localStorage.removeItem('isAdminLoggedIn');
-      isAdminLoggedIn = false;
-    };
-
-    profileIcon.addEventListener('click', () => {
-      if (isAdminLoggedIn) {
-        if (confirm("Deseja sair do perfil administrativo?")) {
-          logout();
-        }
-      } else {
-        const codigo = prompt("Informe o código para acessar a área administrativa:");
-        if (codigo === codigoCorreto) {
-          login();
-        } else if (codigo !== null && codigo !== "") {
-          alert("Código incorreto!");
-        }
-      }
-    });
-
+    // Inicializa os scripts e os ícones após o carregamento do DOM
     document.addEventListener('DOMContentLoaded', () => {
-      if (localStorage.getItem('isAdminLoggedIn') === 'true') {
-        login();
-      }
+      feather.replace();
+      initAuth(); // Inicia a verificação de autenticação
+      initSearch(); // Associa os eventos de busca
     });
   </script>
 </body>
